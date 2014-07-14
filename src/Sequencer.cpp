@@ -27,15 +27,17 @@ Sequencer* Sequencer::Instance()
 
 void Sequencer::init()
 {
-    // create blank sequencer grid
-    for(int y = 0; y < NUM_TRACKS; y++) {
-        for(int x = 0; x < NUM_STEPS; x++) {
+    // initialize pattern bank
+    for(int y = 0; y < 8; y++) {
+        for(int x = 0; x < 8; x++) {
             
-            SequencerPad *pad = &(sequencerPadMatrix[x][y]);
-            pad->setPosition(ofPoint(x, y));
+            SequencerPattern *pattern = &(patternBank[x][y]);
+            pattern->init();
         }
     }
     
+    // initialize first pattern
+    patternBank[currentPattern.x][currentPattern.y].toggleVelocity();
     
     // init the timer
     initTimer(25);
@@ -79,7 +81,7 @@ void Sequencer::togglePadAtPos(ofPoint _pos) {
     
     ofPoint trPos = translatePadPosition(_pos);
     
-    SequencerPad *pad = &(sequencerPadMatrix[trPos.x][trPos.y]);
+    SequencerPad *pad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(trPos);
     
     if(isVelocityMode()) pad->toggleVelocity();
     else pad->toggle();
@@ -88,25 +90,25 @@ void Sequencer::togglePadAtPos(ofPoint _pos) {
 }
 
 pad_colors_t Sequencer::getPadColorAtPos(ofPoint _pos) {
-    
+
     ofPoint trPos = translatePadPosition(_pos);
-    SequencerPad *pad = &(sequencerPadMatrix[trPos.x][trPos.y]);
-    
-    //cout << "VEL TO COLOR " << Translator::Instance()->v_to_pc(pad->getVelocityState());
+    SequencerPad *pad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(trPos);
     
     pad_colors_t pc = OFF;
     
     switch (pad->getVelocityState()) {
-    case VEL_OFF: pc = OFF; break;
-    case VEL_MIN: pc = GREEN_DIM; break;
-    case VEL_MED: pc = GREEN_MED; break;
-    case VEL_MAX: pc = GREEN_FULL; break;
-    case VEL_MUTE: pc = RED_DIM; break;
-    default: break;
+        case VEL_OFF: pc = OFF; break;
+        case VEL_MIN: pc = GREEN_DIM; break;
+        case VEL_MED: pc = GREEN_MED; break;
+        case VEL_MAX: pc = GREEN_FULL; break;
+        case VEL_MUTE: pc = RED_DIM; break;
+        default: break;
     }
     
     return pc;
 }
+
+
 
 ofPoint Sequencer::translatePadPosition(ofPoint _pos) {
     ofPoint trPos = ofPoint(_pos.x + (editPage * (NUM_STEPS / NUM_PAGES)),
@@ -122,7 +124,7 @@ std::vector<SequencerPad*> Sequencer::getActivePadsAtStep(int _step) {
     
     for(int t = 0; t < NUM_TRACKS; t++) {
         
-        SequencerPad *pad = &(sequencerPadMatrix[_step][t]);
+        SequencerPad *pad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(ofPoint(_step, t));
         
         if(pad->isActive()) {
             padVector.push_back(pad);
@@ -139,7 +141,7 @@ void Sequencer::mutePadLine(int _y) {
         // maybe do separate method to translate just 1 axis
         trPos.x = x;
         
-        SequencerPad *pad = &(sequencerPadMatrix[trPos.x][trPos.y]);
+        SequencerPad *pad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(trPos);
         
         pad->toggleMute();
     }
@@ -150,7 +152,7 @@ void Sequencer::deletePadLine(int _y) {
         ofPoint trPos = translatePadPosition(ofPoint(0,_y));
         trPos.x = x;
         
-        SequencerPad *pad = &(sequencerPadMatrix[trPos.x][trPos.y]);
+        SequencerPad *pad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(trPos);
         
         pad->setVelocityState(VEL_OFF);
     }
@@ -206,8 +208,8 @@ void Sequencer::copyPage(op_direction_t _dir) {
                 ofPoint originPos = ofPoint((originStartStep + x),y);
                 ofPoint destinationPos = ofPoint((destinationStartStep + x),y);
                 
-                SequencerPad *originPad = &(sequencerPadMatrix[originPos.x][originPos.y]);
-                SequencerPad *destinationPad = &(sequencerPadMatrix[destinationPos.x][destinationPos.y]);
+                SequencerPad *originPad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(originPos);
+                SequencerPad *destinationPad = patternBank[currentPattern.x][currentPattern.y].getPadAtPos(destinationPos);
                 
                 destinationPad->setVelocityState(originPad->getVelocityState());
             }
@@ -215,6 +217,45 @@ void Sequencer::copyPage(op_direction_t _dir) {
         }
 
     }
+}
+
+
+
+void Sequencer::togglePatternAtPos(ofPoint _pos) {
+    prevPattern = currentPattern;
+    currentPattern = _pos;
+    
+    patternBank[prevPattern.x][prevPattern.y].toggleVelocity();
+    patternBank[currentPattern.x][currentPattern.y].toggleVelocity();
+}
+
+void Sequencer::copyPatternToPos(ofPoint _pos) {
+    
+    // copy pattern bank
+    patternBank[_pos.x][_pos.y] = patternBank[currentPattern.x][currentPattern.y];
+    
+    prevPattern = currentPattern;
+    currentPattern = _pos;
+    
+    patternBank[prevPattern.x][prevPattern.y].toggleVelocity();
+    //patternBank[currentPattern.x][currentPattern.y].toggleVelocity();
+}
+
+
+pad_colors_t Sequencer::getPatternColorAtPos(ofPoint _pos) {
+    
+    SequencerPattern *pattern = &(patternBank[_pos.x][_pos.y]);
+    
+    pad_colors_t pc = OFF;
+    
+    switch (pattern->getVelocityState()) {
+        case PATTERN_EMPTY: pc = OFF; break;
+        case PATTERN_PLAY: pc = GREEN_FULL; break;
+        case PATTERN_STOP: pc = GREEN_DIM; break;
+        default: break;
+    }
+    
+    return pc;
 }
 
 //----------------------------

@@ -22,6 +22,7 @@ enum edit_mode_t {
     PAGE_COPY,
     
     //pattern bank
+    PATTERN_SELECT,
     PATTERN_DELETE,
     PATTERN_COPY
 };

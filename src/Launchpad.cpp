@@ -63,6 +63,7 @@ void Launchpad::init(string _inPort, string _outPort){
     editModeMap[PAGE_DELETE] = false;
     editModeMap[PAGE_COPY] = false;
 
+    editModeMap[PATTERN_SELECT] = false;
     editModeMap[PATTERN_DELETE] = false;
     editModeMap[PATTERN_COPY] = false;
     
@@ -127,74 +128,90 @@ bool Launchpad::isEditMode(LINE_MUTE) {
 
 void Launchpad::updateMatrix(){
     
-    // update grid
     
-    for(int y = 0; y < MATRIX_HEIGHT; y++) {
-        for(int x = 0; x < MATRIX_WIDTH; x++) {
-            
-            LaunchpadPad *pad = &(padMatrix[x][y]);
-            
-            // top locator bar
-            if(y == 0) {
+    
+        // update grid
+        
+        for(int y = 0; y < MATRIX_HEIGHT; y++) {
+            for(int x = 0; x < MATRIX_WIDTH; x++) {
                 
+                LaunchpadPad *pad = &(padMatrix[x][y]);
                 
-                // edit page
-                int editPage = Sequencer::Instance()->getEditPage();
-                
-                if((x >= editPage*2) && (x <= ((editPage*2)+1))){
+                // top locator bar
+                if(y == 0) {
                     
-                    pad->setPadColor(ORANGE_FULL);
                     
-                    // scrolling locator
-                    int stepPos = Sequencer::Instance()->getCurrentStep();
-                    int scaledPos = stepPos / 4.f;
+                    // edit page
+                    int editPage = Sequencer::Instance()->getEditPage();
                     
-                    if(scaledPos == x) {
-                        pad->setPadColor(RED_FULL);
+                    if((x >= editPage*2) && (x <= ((editPage*2)+1))){
+                        
+                        pad->setPadColor(ORANGE_FULL);
+                        
+                        // scrolling locator
+                        int stepPos = Sequencer::Instance()->getCurrentStep();
+                        int scaledPos = stepPos / 4.f;
+                        
+                        if(scaledPos == x) {
+                            pad->setPadColor(RED_FULL);
+                        }
+                        
+                    }
+                    else {
+                        pad->setPadColor(OFF);
+                        
+                        // scrolling locator
+                        int stepPos = Sequencer::Instance()->getCurrentStep();
+                        int scaledPos = stepPos / 4.f;
+                        
+                        if(scaledPos == x) {
+                            pad->setPadColor(RED_FULL);
+                        }
                     }
                     
                 }
-                else {
-                    pad->setPadColor(OFF);
-                    
-                    // scrolling locator
+                // bottom locator bar
+                else if(y == 1) {
                     int stepPos = Sequencer::Instance()->getCurrentStep();
-                    int scaledPos = stepPos / 4.f;
+                    int stepAtPage = stepPos / 8.f;
                     
-                    if(scaledPos == x) {
-                        pad->setPadColor(RED_FULL);
-                    }
-                }
-                
-            }
-            // bottom locator bar
-            else if(y == 1) {
-                int stepPos = Sequencer::Instance()->getCurrentStep();
-                int stepAtPage = stepPos / 8.f;
-                
-                if (stepAtPage == Sequencer::Instance()->getEditPage()) {
-                    int modedStepPos = stepPos % 8;
-                    
-                    if(modedStepPos == x) {
-                        pad->setPadColor(AMBER_FULL);
+                    if (stepAtPage == Sequencer::Instance()->getEditPage()) {
+                        int modedStepPos = stepPos % 8;
+                        
+                        if(modedStepPos == x) {
+                            pad->setPadColor(AMBER_FULL);
+                        }
+                        else {
+                            pad->setPadColor(OFF);
+                        }
                     }
                     else {
                         pad->setPadColor(OFF);
                     }
                 }
-                else {
-                    pad->setPadColor(OFF);
+                // extract color values from sequencer and transpose to the 6x8 sequencer grid
+                else if(y >= GRID_START_LINE) {
+                    
+                    
+                    if (isEditMode(PATTERN_SELECT)) {
+                        
+                        ofPoint pos = ofPoint(x, y-GRID_START_LINE);
+                        
+                        pad_colors_t color = Sequencer::Instance()->getPatternColorAtPos(pos);
+                                
+                        pad->setPadColor(color);
+                    }
+                    else {
+                        
+                        ofPoint pos = ofPoint(x, y-GRID_START_LINE);
+                        pad_colors_t color = Sequencer::Instance()->getPadColorAtPos(pos);
+                    
+                        pad->setPadColor(color);
+                    }
                 }
             }
-            // extract color values from sequencer and transpose to the 6x8 sequencer grid
-            else if(y >= GRID_START_LINE) {
-                ofPoint pos = ofPoint(x, y-GRID_START_LINE);
-                pad_colors_t color = Sequencer::Instance()->getPadColorAtPos(pos);
-                
-                pad->setPadColor(color);
-            }
         }
-    }
+    
 }
 
 void Launchpad::displayMatrix(){
@@ -356,28 +373,34 @@ void Launchpad::processNoteOn(int _pitch, int _vel, double _delta) {
                 // grid
             default: {
                 
+                
                 // only process on press?
                 if(_vel == 127) {
                     
                     int x = _pitch % 8;
                     int y = _pitch / 16.f;
                     
-                    if(y >= 2) {
+                    // pattern select mode
                         
-                        y = y-2;
-                        
-                        
-                        std::stringstream logOut;
-                        logOut << "y: " << y << " > ";
-                        logOut << "x: " << x;
-                        cout << logOut.str() << endl;
-                        
-                        
-                        Sequencer::Instance()->togglePadAtPos(ofPoint(x,y));
+                        if(y >= 2) {
+                            
+                            y = y-2;
+                            
+                            
+                            /*std::stringstream logOut;
+                            logOut << "y: " << y << " > ";
+                            logOut << "x: " << x;
+                            cout << logOut.str() << endl;*/
+                            
+                            if (isEditMode(PATTERN_SELECT)) {
+                                if (isEditMode(PATTERN_COPY)) {
+                                    Sequencer::Instance()->copyPatternToPos(ofPoint(x,y));
+                                }
+                                else Sequencer::Instance()->togglePatternAtPos(ofPoint(x,y));
+                            }
+                            else Sequencer::Instance()->togglePadAtPos(ofPoint(x,y));
+                        }
                     }
-                    
-                    
-                }
                 
                 break;
             }
@@ -412,7 +435,7 @@ void Launchpad::processCtlChange(int _ctl, int _val, double _delta) {
                 if(_val == 127) {
                     
                     if (isEditMode(PAGE_COPY)) Sequencer::Instance()->copyPage(LEFT);
-                        else Sequencer::Instance()->decEditPage();
+                    else Sequencer::Instance()->decEditPage();
                 }
                 
                 break;
@@ -433,6 +456,7 @@ void Launchpad::processCtlChange(int _ctl, int _val, double _delta) {
             }
                 // user 1
             case 109: {
+                toggleEditMode(PATTERN_COPY);
                 break;
             }
                 // user 2
@@ -441,7 +465,9 @@ void Launchpad::processCtlChange(int _ctl, int _val, double _delta) {
             }
                 // mixer
             case 111: {
-                toggleEditMode(PAGE_COPY);
+                if(_val == 127) {
+                    toggleEditMode(PATTERN_SELECT);
+                }
                 break;
             }
                 

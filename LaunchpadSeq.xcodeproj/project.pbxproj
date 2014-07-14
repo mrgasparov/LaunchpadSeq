@@ -67,6 +67,7 @@
 		9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 832BDC407620CDBA568B713D /* tinyxmlerror.cpp */; };
 		9F5C6DD965B4F3A6DB5B88F8 /* ofxUI2DGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02FF3B8D243CFB85AE0909EB /* ofxUI2DGraph.cpp */; };
 		A29D8C96AE042ECEAA1BD4F3 /* NetworkingUtilsWin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2A5B1FAD3F30C8065C396ACB /* NetworkingUtilsWin.cpp */; };
+		A46DB2F619744C2B00B98803 /* SequencerPattern.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A46DB2F419744C2B00B98803 /* SequencerPattern.cpp */; };
 		A4FF90B1197411BB009BDA50 /* ExternalMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF909A197411BB009BDA50 /* ExternalMIDI.cpp */; };
 		A4FF90B2197411BB009BDA50 /* Launchpad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF909C197411BB009BDA50 /* Launchpad.cpp */; };
 		A4FF90B3197411BB009BDA50 /* LaunchpadPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF909E197411BB009BDA50 /* LaunchpadPad.cpp */; };
@@ -280,6 +281,9 @@
 		9F7986DC4EB05E75FCE2C777 /* ofxOscSender.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxOscSender.h; path = ../../../addons/ofxOsc/src/ofxOscSender.h; sourceTree = SOURCE_ROOT; };
 		A2AAA8CA403479E6FCDF920E /* OscHostEndianness.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = OscHostEndianness.h; path = ../../../addons/ofxOsc/libs/oscpack/src/osc/OscHostEndianness.h; sourceTree = SOURCE_ROOT; };
 		A2BD044ECF26916EB2DED53A /* Attraction.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Attraction.h; path = ../../../addons/ofxTraerPhysics/src/Attraction.h; sourceTree = SOURCE_ROOT; };
+		A46DB2F419744C2B00B98803 /* SequencerPattern.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SequencerPattern.cpp; sourceTree = "<group>"; };
+		A46DB2F519744C2B00B98803 /* SequencerPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequencerPattern.h; sourceTree = "<group>"; };
+		A46DB2F8197477C900B98803 /* pattern_states_t.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pattern_states_t.h; sourceTree = "<group>"; };
 		A4FF9099197411BB009BDA50 /* edit_mode_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edit_mode_t.h; sourceTree = "<group>"; };
 		A4FF909A197411BB009BDA50 /* ExternalMIDI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExternalMIDI.cpp; sourceTree = "<group>"; };
 		A4FF909B197411BB009BDA50 /* ExternalMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExternalMIDI.h; sourceTree = "<group>"; };
@@ -608,6 +612,7 @@
 		A4DBE75819742F5800A53451 /* launchpad */ = {
 			isa = PBXGroup;
 			children = (
+				A4FF9099197411BB009BDA50 /* edit_mode_t.h */,
 				A4FF909C197411BB009BDA50 /* Launchpad.cpp */,
 				A4FF909D197411BB009BDA50 /* Launchpad.h */,
 				A4FF909E197411BB009BDA50 /* LaunchpadPad.cpp */,
@@ -623,13 +628,15 @@
 		A4DBE75919742F9A00A53451 /* sequencer */ = {
 			isa = PBXGroup;
 			children = (
-				A4FF9099197411BB009BDA50 /* edit_mode_t.h */,
 				A4FF90A0197411BB009BDA50 /* op_direction_t.h */,
 				A4FF90A5197411BB009BDA50 /* Sequencer.cpp */,
 				A4FF90A6197411BB009BDA50 /* Sequencer.h */,
 				A4FF90A7197411BB009BDA50 /* SequencerPad.cpp */,
 				A4FF90A8197411BB009BDA50 /* SequencerPad.h */,
 				A4FF90AD197411BB009BDA50 /* velocity_states_t.h */,
+				A46DB2F419744C2B00B98803 /* SequencerPattern.cpp */,
+				A46DB2F519744C2B00B98803 /* SequencerPattern.h */,
+				A46DB2F8197477C900B98803 /* pattern_states_t.h */,
 			);
 			name = sequencer;
 			sourceTree = "<group>";
@@ -1095,6 +1102,7 @@
 				3F6204A5E889A27D99834613 /* Attraction.cpp in Sources */,
 				91595EB15AB27BBED8963A84 /* EulerIntegrator.cpp in Sources */,
 				0D11C3F9EA3C2426EB56842D /* ModifiedEulerIntegrator.cpp in Sources */,
+				A46DB2F619744C2B00B98803 /* SequencerPattern.cpp in Sources */,
 				68D48FAAA23F32A726C38C11 /* Particle.cpp in Sources */,
 				D7CC5AA10C574A98D63C5E0C /* ParticleSystem.cpp in Sources */,
 				240F4305D6744BB2E8720479 /* RungeKuttaIntegrator.cpp in Sources */,

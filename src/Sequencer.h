@@ -17,6 +17,7 @@
 #include "ExternalMIDI.h"
 
 #include "SequencerPad.h"
+#include "SequencerPattern.h"
 
 #include "op_direction_t.h"
 
@@ -60,6 +61,12 @@ public:
     
     
     void copyPage(op_direction_t _dir);
+    
+    
+
+    void togglePatternAtPos(ofPoint _pos);
+    void copyPatternToPos(ofPoint _pos);
+    pad_colors_t getPatternColorAtPos(ofPoint _pos);
     
     //----------------------------
     // Sequencer Edit View Methods
@@ -135,10 +142,9 @@ private:
     // Private so that it can  not be called
     //          this is a trick to initialize the vector
     Sequencer() :
-    sequencerPadMatrix(NUM_TRACKS, std::vector<SequencerPad>(NUM_STEPS, SequencerPad()))
+    patternBank(8, std::vector<SequencerPattern>(8, SequencerPattern()))
     {};
-
-    Sequencer(Sequencer const&){};             // copy constructor is private
+    Sequencer(Sequencer const&);            // copy constructor is private
     Sequencer& operator=(Sequencer const&){};  // assignment operator is private
     static Sequencer* m_pInstance;
 
@@ -154,7 +160,12 @@ private:
     //--------------------------
     
     // 32 track x 32 step grid used to store whole pattern
-    std::vector<std::vector<SequencerPad> > sequencerPadMatrix;
+    //std::vector<std::vector<SequencerPad> > sequencerPadMatrix;
+    
+    ofPoint prevPattern = ofPoint(0,0);
+    ofPoint currentPattern = ofPoint(0,0);
+    
+    std::vector<std::vector<SequencerPattern> > patternBank;// = SequencerPattern();
     
     //-------------------------------
     // Sequencer Edit View Attributes
