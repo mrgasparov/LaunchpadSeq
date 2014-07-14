@@ -1,0 +1,7 @@
+ofxGui
+ofxNetwork
+ofxOsc
+ofxXmlSettings
+ofxMidi
+ofxTraerPhysics
+ofxUI
