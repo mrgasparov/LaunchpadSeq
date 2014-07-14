@@ -74,9 +74,7 @@
 		A4FF90B5197411BB009BDA50 /* Sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A5197411BB009BDA50 /* Sequencer.cpp */; };
 		A4FF90B6197411BB009BDA50 /* SequencerPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A7197411BB009BDA50 /* SequencerPad.cpp */; };
 		A4FF90B7197411BB009BDA50 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A9197411BB009BDA50 /* testApp.cpp */; };
-		A4FF90B8197411BB009BDA50 /* Translator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90AB197411BB009BDA50 /* Translator.cpp */; };
 		A4FF90B9197411BB009BDA50 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90AE197411BB009BDA50 /* main.cpp */; };
-		A4FF90BA197411BB009BDA50 /* ofxLaunchpadColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90AF197411BB009BDA50 /* ofxLaunchpadColor.cpp */; };
 		A4FF90BD197412C1009BDA50 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FF90BC197412C1009BDA50 /* CoreMIDI.framework */; };
 		ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADD194746185E2DA11468377 /* IpEndpointName.cpp */; };
 		ADE7C2AFC51E3F7E5E389026 /* ofxUISortableList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5613D5D24B00D8AD909F7E6A /* ofxUISortableList.cpp */; };
@@ -300,12 +298,8 @@
 		A4FF90A8197411BB009BDA50 /* SequencerPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SequencerPad.h; sourceTree = "<group>"; };
 		A4FF90A9197411BB009BDA50 /* testApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testApp.cpp; sourceTree = "<group>"; };
 		A4FF90AA197411BB009BDA50 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
-		A4FF90AB197411BB009BDA50 /* Translator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Translator.cpp; sourceTree = "<group>"; };
-		A4FF90AC197411BB009BDA50 /* Translator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Translator.h; sourceTree = "<group>"; };
 		A4FF90AD197411BB009BDA50 /* velocity_states_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = velocity_states_t.h; sourceTree = "<group>"; };
 		A4FF90AE197411BB009BDA50 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		A4FF90AF197411BB009BDA50 /* ofxLaunchpadColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLaunchpadColor.cpp; sourceTree = "<group>"; };
-		A4FF90B0197411BB009BDA50 /* ofxLaunchpadColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLaunchpadColor.h; sourceTree = "<group>"; };
 		A4FF90BC197412C1009BDA50 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		A4FF90C119741BF5009BDA50 /* zebra.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = zebra.icns; sourceTree = "<group>"; };
 		A64B8AA7481267CD4A76C16B /* ofxUITabBar.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUITabBar.cpp; path = ../../../addons/ofxUI/src/ofxUITabBar.cpp; sourceTree = SOURCE_ROOT; };
@@ -611,6 +605,44 @@
 			name = ofxUI;
 			sourceTree = "<group>";
 		};
+		A4DBE75819742F5800A53451 /* launchpad */ = {
+			isa = PBXGroup;
+			children = (
+				A4FF909C197411BB009BDA50 /* Launchpad.cpp */,
+				A4FF909D197411BB009BDA50 /* Launchpad.h */,
+				A4FF909E197411BB009BDA50 /* LaunchpadPad.cpp */,
+				A4FF909F197411BB009BDA50 /* LaunchpadPad.h */,
+				A4FF90A3197411BB009BDA50 /* Pad.cpp */,
+				A4FF90A4197411BB009BDA50 /* Pad.h */,
+				A4FF90A1197411BB009BDA50 /* pad_colors_t.h */,
+				A4FF90A2197411BB009BDA50 /* pad_types_t.h */,
+			);
+			name = launchpad;
+			sourceTree = "<group>";
+		};
+		A4DBE75919742F9A00A53451 /* sequencer */ = {
+			isa = PBXGroup;
+			children = (
+				A4FF9099197411BB009BDA50 /* edit_mode_t.h */,
+				A4FF90A0197411BB009BDA50 /* op_direction_t.h */,
+				A4FF90A5197411BB009BDA50 /* Sequencer.cpp */,
+				A4FF90A6197411BB009BDA50 /* Sequencer.h */,
+				A4FF90A7197411BB009BDA50 /* SequencerPad.cpp */,
+				A4FF90A8197411BB009BDA50 /* SequencerPad.h */,
+				A4FF90AD197411BB009BDA50 /* velocity_states_t.h */,
+			);
+			name = sequencer;
+			sourceTree = "<group>";
+		};
+		A4DBE75A19742FCB00A53451 /* external */ = {
+			isa = PBXGroup;
+			children = (
+				A4FF909A197411BB009BDA50 /* ExternalMIDI.cpp */,
+				A4FF909B197411BB009BDA50 /* ExternalMIDI.h */,
+			);
+			name = external;
+			sourceTree = "<group>";
+		};
 		A4FF90BE19741B09009BDA50 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -884,30 +916,12 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				A4FF9099197411BB009BDA50 /* edit_mode_t.h */,
-				A4FF909A197411BB009BDA50 /* ExternalMIDI.cpp */,
-				A4FF909B197411BB009BDA50 /* ExternalMIDI.h */,
-				A4FF909C197411BB009BDA50 /* Launchpad.cpp */,
-				A4FF909D197411BB009BDA50 /* Launchpad.h */,
-				A4FF909E197411BB009BDA50 /* LaunchpadPad.cpp */,
-				A4FF909F197411BB009BDA50 /* LaunchpadPad.h */,
 				A4FF90AE197411BB009BDA50 /* main.cpp */,
-				A4FF90AF197411BB009BDA50 /* ofxLaunchpadColor.cpp */,
-				A4FF90B0197411BB009BDA50 /* ofxLaunchpadColor.h */,
-				A4FF90A0197411BB009BDA50 /* op_direction_t.h */,
-				A4FF90A3197411BB009BDA50 /* Pad.cpp */,
-				A4FF90A4197411BB009BDA50 /* Pad.h */,
-				A4FF90A1197411BB009BDA50 /* pad_colors_t.h */,
-				A4FF90A2197411BB009BDA50 /* pad_types_t.h */,
-				A4FF90A5197411BB009BDA50 /* Sequencer.cpp */,
-				A4FF90A6197411BB009BDA50 /* Sequencer.h */,
-				A4FF90A7197411BB009BDA50 /* SequencerPad.cpp */,
-				A4FF90A8197411BB009BDA50 /* SequencerPad.h */,
 				A4FF90A9197411BB009BDA50 /* testApp.cpp */,
 				A4FF90AA197411BB009BDA50 /* testApp.h */,
-				A4FF90AB197411BB009BDA50 /* Translator.cpp */,
-				A4FF90AC197411BB009BDA50 /* Translator.h */,
-				A4FF90AD197411BB009BDA50 /* velocity_states_t.h */,
+				A4DBE75A19742FCB00A53451 /* external */,
+				A4DBE75819742F5800A53451 /* launchpad */,
+				A4DBE75919742F9A00A53451 /* sequencer */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1058,7 +1072,6 @@
 				ADE367465D2A8EBAD4C7A8D9 /* IpEndpointName.cpp in Sources */,
 				A4FF90B6197411BB009BDA50 /* SequencerPad.cpp in Sources */,
 				67FE4C7B15C2F0478C8126C2 /* NetworkingUtils.cpp in Sources */,
-				A4FF90BA197411BB009BDA50 /* ofxLaunchpadColor.cpp in Sources */,
 				510CAFE035E576A4E1502D52 /* UdpSocket.cpp in Sources */,
 				A29D8C96AE042ECEAA1BD4F3 /* NetworkingUtilsWin.cpp in Sources */,
 				28090DEB5109115003E8F1C5 /* UdpSocketWin.cpp in Sources */,
@@ -1068,7 +1081,6 @@
 				879A251454401BC0B6E4F238 /* OscTypes.cpp in Sources */,
 				63B57AC5BF4EF088491E0317 /* ofxXmlSettings.cpp in Sources */,
 				933A2227713C720CEFF80FD9 /* tinyxml.cpp in Sources */,
-				A4FF90B8197411BB009BDA50 /* Translator.cpp in Sources */,
 				9D44DC88EF9E7991B4A09951 /* tinyxmlerror.cpp in Sources */,
 				5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */,
 				BCC8D420CBA9217E437D2D76 /* ofxRtMidiIn.cpp in Sources */,
