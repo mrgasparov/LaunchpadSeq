@@ -36,8 +36,8 @@ public:
  
     void toggleVelocity();
     
-    pattern_states_t getVelocityState();
-    void setVelocityState(pattern_states_t _velocityState);
+    pattern_states_t getPatternState();
+    void setPatternState(pattern_states_t _patternState);
     
     bool isActive();
     
@@ -52,8 +52,8 @@ private:
     
     
     // velocity state, starts OFF
-    pattern_states_t velocityState = PATTERN_EMPTY;
-    pattern_states_t prevVelocityState = PATTERN_EMPTY;
+    pattern_states_t patternState = PATTERN_EMPTY;
+    pattern_states_t prevPatternState = PATTERN_EMPTY;
     
     // is on?
     bool active = false;

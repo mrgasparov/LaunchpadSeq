@@ -396,6 +396,9 @@ void Launchpad::processNoteOn(int _pitch, int _vel, double _delta) {
                                 if (isEditMode(PATTERN_COPY)) {
                                     Sequencer::Instance()->copyPatternToPos(ofPoint(x,y));
                                 }
+                                else if (isEditMode(PATTERN_DELETE)) {
+                                    Sequencer::Instance()->resetPatternAtPos(ofPoint(x,y));
+                                }
                                 else Sequencer::Instance()->togglePatternAtPos(ofPoint(x,y));
                             }
                             else Sequencer::Instance()->togglePadAtPos(ofPoint(x,y));
@@ -461,6 +464,7 @@ void Launchpad::processCtlChange(int _ctl, int _val, double _delta) {
             }
                 // user 2
             case 110: {
+                toggleEditMode(PATTERN_DELETE);
                 break;
             }
                 // mixer

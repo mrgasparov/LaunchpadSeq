@@ -19,6 +19,7 @@
 #include "SequencerPad.h"
 #include "SequencerPattern.h"
 
+#include "pad_colors_t.h"
 #include "op_direction_t.h"
 
 
@@ -65,6 +66,7 @@ public:
     
 
     void togglePatternAtPos(ofPoint _pos);
+    void resetPatternAtPos(ofPoint _pos);
     void copyPatternToPos(ofPoint _pos);
     pad_colors_t getPatternColorAtPos(ofPoint _pos);
     
@@ -158,9 +160,6 @@ private:
     //--------------------------
     // Sequencer Grid Attributes
     //--------------------------
-    
-    // 32 track x 32 step grid used to store whole pattern
-    //std::vector<std::vector<SequencerPad> > sequencerPadMatrix;
     
     ofPoint prevPattern = ofPoint(0,0);
     ofPoint currentPattern = ofPoint(0,0);

@@ -11,8 +11,6 @@
 
 #include "ofMain.h"
 
-#include "Pad.h"
-
 #include "pad_colors_t.h"
 
 class LaunchpadPad {

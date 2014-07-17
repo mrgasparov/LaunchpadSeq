@@ -71,7 +71,6 @@
 		A4FF90B1197411BB009BDA50 /* ExternalMIDI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF909A197411BB009BDA50 /* ExternalMIDI.cpp */; };
 		A4FF90B2197411BB009BDA50 /* Launchpad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF909C197411BB009BDA50 /* Launchpad.cpp */; };
 		A4FF90B3197411BB009BDA50 /* LaunchpadPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF909E197411BB009BDA50 /* LaunchpadPad.cpp */; };
-		A4FF90B4197411BB009BDA50 /* Pad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A3197411BB009BDA50 /* Pad.cpp */; };
 		A4FF90B5197411BB009BDA50 /* Sequencer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A5197411BB009BDA50 /* Sequencer.cpp */; };
 		A4FF90B6197411BB009BDA50 /* SequencerPad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A7197411BB009BDA50 /* SequencerPad.cpp */; };
 		A4FF90B7197411BB009BDA50 /* testApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4FF90A9197411BB009BDA50 /* testApp.cpp */; };
@@ -294,8 +293,6 @@
 		A4FF90A0197411BB009BDA50 /* op_direction_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = op_direction_t.h; sourceTree = "<group>"; };
 		A4FF90A1197411BB009BDA50 /* pad_colors_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pad_colors_t.h; sourceTree = "<group>"; };
 		A4FF90A2197411BB009BDA50 /* pad_types_t.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pad_types_t.h; sourceTree = "<group>"; };
-		A4FF90A3197411BB009BDA50 /* Pad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pad.cpp; sourceTree = "<group>"; };
-		A4FF90A4197411BB009BDA50 /* Pad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pad.h; sourceTree = "<group>"; };
 		A4FF90A5197411BB009BDA50 /* Sequencer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sequencer.cpp; sourceTree = "<group>"; };
 		A4FF90A6197411BB009BDA50 /* Sequencer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequencer.h; sourceTree = "<group>"; };
 		A4FF90A7197411BB009BDA50 /* SequencerPad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SequencerPad.cpp; sourceTree = "<group>"; };
@@ -617,8 +614,6 @@
 				A4FF909D197411BB009BDA50 /* Launchpad.h */,
 				A4FF909E197411BB009BDA50 /* LaunchpadPad.cpp */,
 				A4FF909F197411BB009BDA50 /* LaunchpadPad.h */,
-				A4FF90A3197411BB009BDA50 /* Pad.cpp */,
-				A4FF90A4197411BB009BDA50 /* Pad.h */,
 				A4FF90A1197411BB009BDA50 /* pad_colors_t.h */,
 				A4FF90A2197411BB009BDA50 /* pad_types_t.h */,
 			);
@@ -1146,7 +1141,6 @@
 				52AFF80A869790144ACCC9BA /* ofxUISpectrum.cpp in Sources */,
 				1DAAC3FB4B98B08AE63F4687 /* ofxUISuperCanvas.cpp in Sources */,
 				5AE95ADB5549701423B6DA48 /* ofxUITabBar.cpp in Sources */,
-				A4FF90B4197411BB009BDA50 /* Pad.cpp in Sources */,
 				C961BE22AB9A8CCF037FC18F /* ofxUITextArea.cpp in Sources */,
 				F8D05F7C7F785CE323983B47 /* ofxUITextInput.cpp in Sources */,
 				04C82720B149CE576B8CBB06 /* ofxUIToggle.cpp in Sources */,

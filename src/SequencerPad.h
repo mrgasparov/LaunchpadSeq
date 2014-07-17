@@ -13,8 +13,6 @@
 
 #include "ofMain.h"
 
-#include "Pad.h"
-
 #include "velocity_states_t.h"
 
 class SequencerPad {

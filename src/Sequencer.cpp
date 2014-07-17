@@ -229,6 +229,11 @@ void Sequencer::togglePatternAtPos(ofPoint _pos) {
     patternBank[currentPattern.x][currentPattern.y].toggleVelocity();
 }
 
+void Sequencer::resetPatternAtPos(ofPoint _pos) {
+    
+    patternBank[_pos.x][_pos.y].init();
+}
+
 void Sequencer::copyPatternToPos(ofPoint _pos) {
     
     // copy pattern bank
@@ -248,7 +253,7 @@ pad_colors_t Sequencer::getPatternColorAtPos(ofPoint _pos) {
     
     pad_colors_t pc = OFF;
     
-    switch (pattern->getVelocityState()) {
+    switch (pattern->getPatternState()) {
         case PATTERN_EMPTY: pc = OFF; break;
         case PATTERN_PLAY: pc = GREEN_FULL; break;
         case PATTERN_STOP: pc = GREEN_DIM; break;

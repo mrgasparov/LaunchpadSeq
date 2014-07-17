@@ -17,6 +17,9 @@ void SequencerPattern::init() {
      pad->setPosition(ofPoint(x, y));
      }
     }
+    
+    patternState = PATTERN_EMPTY;
+    prevPatternState = PATTERN_EMPTY;
 }
 
 //--------------------------
@@ -32,20 +35,20 @@ SequencerPad* SequencerPattern::getPadAtPos(ofPoint _trPos) {
 
 
 void SequencerPattern::toggleVelocity() {
-    switch (velocityState) {
+    switch (patternState) {
             
         case PATTERN_EMPTY: {
-            velocityState = PATTERN_PLAY;
+            patternState = PATTERN_PLAY;
             active = true;
             break;
         }
         case PATTERN_PLAY: {
-            velocityState = PATTERN_STOP;
+            patternState = PATTERN_STOP;
             active = false;
             break;
         }
         case PATTERN_STOP: {
-            velocityState = PATTERN_PLAY;
+            patternState = PATTERN_PLAY;
             active = true;
             break;
         }
@@ -56,14 +59,14 @@ void SequencerPattern::toggleVelocity() {
 
 
 
-pattern_states_t SequencerPattern::getVelocityState() {
-    return velocityState;
+pattern_states_t SequencerPattern::getPatternState() {
+    return patternState;
 }
 
-void SequencerPattern::setVelocityState(pattern_states_t _velocityState) {
-    velocityState = _velocityState;
+void SequencerPattern::setPatternState(pattern_states_t _patternState) {
+    patternState = _patternState;
     
-    if (velocityState == PATTERN_EMPTY) {
+    if (patternState == PATTERN_EMPTY) {
         active = false;
     }
     else active = true;
